@@ -1,0 +1,44 @@
+---
+title: "decision accuracy simulation"
+author: "Iris Yocarini"
+date: "22 May 2016"
+output: html_document
+---
+## Simulation Decision Accuracy
+In a different project, this data was simulated. Under 144 different conditions (full factorial model), 500 datasets were simulated with each simulation containing simulated grades from 2000 students. 
+
+```{r}
+datasim <- read.csv("~/Rworkspace/simdata/datasetsimulatiespaper", sep="")
+str(datasim, list.len=ncol(datasim))
+```
+
+#### descriptives
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
+unique(datasim$n)
+unique(datasim$cor)
+unique(datasim$R)
+unique(datasim$z)
+
+library(gridExtra)
+grid.table(mtcars)
+```
+
+```{r kable}
+n <- 100
+x <- rnorm(n)
+y <- 2*x + rnorm(n)
+out <- lm(y ~ x)
+library(knitr)
+kable(summary(out)$coef, digits=2)
+```
+
+```{r kable}
+n <- c(8,12)
+cor <- c(0.1, 0.3, 0.5, 0.7)
+
+library(knitr)
+kable(n, "n")
+```
