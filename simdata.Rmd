@@ -23,4 +23,36 @@ The 144 conditions were created using a full factorial model of four variables t
 * The average reliability of the tests was manipulated at `r length(unique(datasim$R))` levels: R = `r unique(datasim$R)`
 * The number of tests allowed to be retaken were manipulated at `r length(unique(datasim$z))` levels: cor = `r unique(datasim$z)`
 
-#### Decisoin rules
+#### Decision rules
+In total 15 decision rules were applied to each simulated dataset. In each of these rules different GPA and minimum grades were required. In order to pass the year, students needed to score above a 5.5, 6, or 6.5 and have a minimum grade of 1.0, 3.0, 4.0, or 5.0 on each individual test.
+
+`r rules <- matrix(c(5.5,1.0,3.0,4.0,5.0,6.0,1.0,3.0,4.0,5.0,6.5,1.0, 3.0,4.0,5.0,5.5,5.5,5.5,5.5,5.5,6.0,6.0,6.0,6.0,6.0,6.5,6.5,6.5,6.5,6.5),15,2)`
+`r rownames(rules) <- c("decision 1",
+                     "decision 2",
+                     "decision 3",
+                     "decision 4",
+                     "decision 5",
+                     "decision 6",
+                     "decision 7",
+                     "decision 8",
+                     "decision 9",
+                     "decision 10",
+                     "decision 11",
+                     "decision 12",
+                     "decision 13",
+                     "decision 14",
+                     "decision 15")`
+`r colnames(rules) <- c("Minimum grade", "GPA")`
+```{r}
+print(rules)
+```
+
+### Results
+## Total proportion of misclassifications 
+```{r}
+library(ggplot2)
+g <- ggplot(data = datasim, aes(x=R, y=rule1total, group = n)) 
+g + geom_boxplot()
+g <- ggplot(data = datasim, aes(x=R, y=rule2total, group = n)) 
+g + geom_boxplot()
+```
